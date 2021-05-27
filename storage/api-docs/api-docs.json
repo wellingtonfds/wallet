@@ -1,18 +1,194 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My First API",
+        "title": "Wallet API",
         "version": "0.1"
     },
     "paths": {
-        "/api/resource.json": {
+        "/api/user?per_page={per_page}": {
             "get": {
-                "operationId": "App\\Http\\Controllers\\HomeController::index",
+                "operationId": "App\\Http\\Controllers\\UserController::index",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "path",
+                        "description": "Value from env API_VERSION",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 20
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "An example resource"
                     }
                 }
+            }
+        },
+        "/api/user": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string"
+                                    },
+                                    "cpf_cnpj": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The user resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/user_resource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/user/{user_id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/user_resource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "when user not found"
+                    }
+                }
+            },
+            "put": {
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/user_resource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The user resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/user_resource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/user_resource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "when user not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "user_resource": {
+                "title": "User",
+                "description": "The default resource for an User",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "int64",
+                        "example": "1"
+                    },
+                    "name": {
+                        "description": "Name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email",
+                        "type": "string",
+                        "example": "anakin@jediorder.org"
+                    },
+                    "cpf_cnpj": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
             }
         }
     },

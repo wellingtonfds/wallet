@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         l5Swagger\L5SwaggerServiceProvider::class,
+        geekcom\ValidatorDocs\ValidatorProvider::class
 
     ],
 
