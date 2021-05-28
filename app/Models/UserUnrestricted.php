@@ -9,6 +9,7 @@ class UserUnrestricted extends User
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *

@@ -15,7 +15,7 @@ class CreateBalancesTable extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
-            $table->decimal('value', 8, 0);
+            $table->decimal('value', 8, 2);
             $table->enum('type', ['deposit', 'payment', 'cashback']);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class TransactionCreateRequest extends FormRequest
 {
@@ -35,6 +34,7 @@ class TransactionCreateRequest extends FormRequest
                     if($user->type === 'business'){
                         $fail("the $attribute needs to be a personal account");
                     }
+
                     if($request->get('value') > $user->balance){
                         $fail("insufficient funds");
                     }

@@ -15,7 +15,7 @@ class NotifyTransactionServices
     {
         $response = Http::get(env('API_NOTIFICATION'));
         if ($response->status() === 200) {
-            $user->balance();
+            $user->balances();
             return $response->json();
         }
         throw new NotifyAccountException();

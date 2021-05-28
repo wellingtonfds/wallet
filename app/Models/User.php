@@ -32,7 +32,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'cpf_cnpj'
+        'cpf_cnpj',
+        'type'
     ];
 
     /**
@@ -90,9 +91,13 @@ class User extends Authenticatable
         return $finalBalance;
     }
 
-    public function getTypeAttribute(): string
-    {
-        return strlen($this->cpf_cnpj) == 14 ? 'personal' : 'business';
-    }
+//    public function getTypeAttribute(): string
+//    {
+//        return strlen($this->cpf_cnpj) == 14 ? 'personal' : 'business';
+//    }
+
+//    public function scopeType($query){
+//        return $query->where('type', 'personal');
+//    }
 
 }

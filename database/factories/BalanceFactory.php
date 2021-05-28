@@ -27,4 +27,17 @@ class BalanceFactory extends Factory
             'type' => $types[rand(0, 2)],
         ];
     }
+
+
+    public function deposit($value)
+    {
+        return $this->state(function (array $attributes) use ($value) {
+            return [
+                'value' => $value,
+                'type' => 'deposit',
+            ];
+        });
+    }
+
+
 }

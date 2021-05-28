@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Observers\UserObserver;
 use App\Repositories\Transactions\TransactionRepository;
 use App\Repositories\Transactions\TransactionRepositoryInterface;
 use App\Repositories\User\UserRepository;
@@ -34,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::observe(UserObserver::class);
     }
 }

@@ -171,7 +171,7 @@ class UserController extends Controller
     }
 
     public  function test(){
-        $user = User::find(5);
+        $user = User::find(58);
 //        dd($user);
         dd($user->type, $user->balance);
 

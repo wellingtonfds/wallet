@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('payer')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('payee');
             $table->foreign('payee')->references('id')->on('users')->onDelete('cascade');
-            $table->decimal('value', 8, 0);
+            $table->decimal('value', 8, 2);
             $table->softDeletes();
             $table->timestamps();
         });
