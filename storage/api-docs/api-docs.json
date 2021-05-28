@@ -5,6 +5,51 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/transaction": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "payer": {
+                                        "type": "int"
+                                    },
+                                    "payee": {
+                                        "type": "int"
+                                    },
+                                    "value": {
+                                        "type": "numeric"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "payer": 12,
+                                    "payee": 15,
+                                    "value": 25.12
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The user resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/transaction"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
         "/api/user?per_page={per_page}": {
             "get": {
                 "operationId": "App\\Http\\Controllers\\UserController::index",
@@ -166,6 +211,27 @@
     },
     "components": {
         "schemas": {
+            "transaction": {
+                "title": "Transaction",
+                "description": "The default resource for an Transaction",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "int64",
+                        "example": "1"
+                    },
+                    "payer": {
+                        "$ref": "#/components/schemas/user_resource"
+                    },
+                    "payee": {
+                        "$ref": "#/components/schemas/user_resource"
+                    },
+                    "value": {
+                        "type": "numeric"
+                    }
+                },
+                "type": "object"
+            },
             "user_resource": {
                 "title": "User",
                 "description": "The default resource for an User",
