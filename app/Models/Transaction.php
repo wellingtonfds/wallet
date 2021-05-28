@@ -12,12 +12,12 @@ class Transaction extends Model
     protected $fillable = ['payer', 'payee', 'value'];
 
 
-    public function payer()
+    public function userPayer()
     {
         return $this->belongsTo(User::class, 'payer');
     }
 
-    public function payee()
+    public function userPayee()
     {
         return $this->belongsTo(User::class, 'payee');
     }

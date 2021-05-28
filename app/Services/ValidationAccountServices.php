@@ -3,26 +3,38 @@
 
 namespace App\Services;
 
-
-use GuzzleHttp\Exception\ClientException;
+use App\Exceptions\ValidationAccountException;
 use Illuminate\Support\Facades\Http;
 
 class ValidationAccountServices
 {
 
-
-
-
+    /**
+     * @return array|mixed
+     * @throws ValidationAccountException
+     */
     public function validateAccount()
     {
-        try {
-            $response = Http::get( 'https://docs.guzzlephp.org/123123123123123123/123123123');
-//            $response = Http::get( 'https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6/asdasdasdas');
-            return $response;
-        } catch (ClientException $e) {
-            throw new \Exception($e->getRequest());
-            throw new \Exception($e->getResponse());
+        $response = Http::get(env('API_VALIDATION_ACCOUNT'));
+        if ($response->status() === 200) {
+            $body = $response->json();
+            if($this->validateMessage($body)){
+                return  $body;
+            }else {
+                throw new ValidationAccountException();
+            }
+
         }
+        throw new ValidationAccountException();
     }
 
+    private function validateMessage($data): bool{
+        if(isset($data['message'])){
+            if($data['message'] == 'Autorizado'){
+                return  true;
+            }
+            return false;
+        }
+        return false;
+    }
 }
