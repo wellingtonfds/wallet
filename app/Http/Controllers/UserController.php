@@ -169,11 +169,4 @@ class UserController extends Controller
         $user->delete();
         return $user;
     }
-
-    public  function test(){
-        $user = User::find(58);
-//        dd($user);
-        dd($user->type, $user->balance);
-
-    }
 }

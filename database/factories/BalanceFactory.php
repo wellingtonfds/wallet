@@ -31,7 +31,7 @@ class BalanceFactory extends Factory
 
     public function deposit($value)
     {
-        return $this->state(function (array $attributes) use ($value) {
+        return $this->state(function () use ($value) {
             return [
                 'value' => $value,
                 'type' => 'deposit',

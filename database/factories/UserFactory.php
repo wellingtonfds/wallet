@@ -38,7 +38,7 @@ class UserFactory extends Factory
     public function legal()
     {
         $faker = \Faker\Factory::create('pt_BR');
-        return $this->state(function (array $attributes) use ($faker) {
+        return $this->state(function () use ($faker) {
             return [
                 'cpf_cnpj' => $faker->cnpj,
             ];
@@ -52,7 +52,7 @@ class UserFactory extends Factory
      */
     public function test()
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             $faker = \Faker\Factory::create('pt_BR');
             return [
                 'password' => 'wallet123',

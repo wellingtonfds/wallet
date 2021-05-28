@@ -87,17 +87,6 @@ class User extends Authenticatable
         $balancetransctionsPayee = $this->transctionsPayee->reduce(function ($carry, $value) {
                 return $carry + ($value->value);
             }) ?? 0;
-        $finalBalance = $balance + $balancetransctionsPayee + (-1 * $balanceTransctionsPayer);
-        return $finalBalance;
+        return $balance + $balancetransctionsPayee + (-1 * $balanceTransctionsPayer);
     }
-
-//    public function getTypeAttribute(): string
-//    {
-//        return strlen($this->cpf_cnpj) == 14 ? 'personal' : 'business';
-//    }
-
-//    public function scopeType($query){
-//        return $query->where('type', 'personal');
-//    }
-
 }
