@@ -18,19 +18,19 @@ class ValidationAccountServices
         $response = Http::get(env('API_VALIDATION_ACCOUNT'));
         if ($response->status() === 200) {
             $body = $response->json();
-            if($this->validateMessage($body)){
+            if ($this->validateMessage($body)) {
                 return  $body;
-            }else {
+            } else {
                 throw new ValidationAccountException();
             }
-
         }
         throw new ValidationAccountException();
     }
 
-    private function validateMessage($data): bool{
-        if(isset($data['message'])){
-            if($data['message'] == 'Autorizado'){
+    private function validateMessage($data): bool
+    {
+        if (isset($data['message'])) {
+            if ($data['message'] == 'Autorizado') {
                 return  true;
             }
             return false;
