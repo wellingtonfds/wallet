@@ -21,12 +21,17 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 ## Documentation
 
 Here you're found all resources available [Wallet documentation](/api/documentation).
+http://localhost:81/api/documentation
 ## Deploy
+#### Run
+- docker-compose up --build
+- docker-compose exec -T php-wallet composer install
+- docker-compose exec -T php-wallet php artisan migrate:refresh --seed 
+- Run docker-compose exec -T php-wallet php artisan test
 
-Run docker-compose up --build
-Run docker-compose exec -T php-wallet php artisan migrate:refresh --seed 
-Run docker-compose exec -T php-wallet php artisan test
+## Server
 
+Now is available the resources http://localhost:81 
 
 ## License
 

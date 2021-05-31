@@ -35,7 +35,6 @@ class User extends Authenticatable
         'cpf_cnpj',
         'type'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -87,6 +86,6 @@ class User extends Authenticatable
         $balancetransctionsPayee = $this->transctionsPayee->reduce(function ($carry, $value) {
                 return $carry + ($value->value);
             }) ?? 0;
-        return $balance + $balancetransctionsPayee + (-1 * $balanceTransctionsPayer);
+        return $this->attributes['balance'] = $balance + $balancetransctionsPayee + (-1 * $balanceTransctionsPayer);
     }
 }

@@ -15,7 +15,6 @@ class UserUnrestricted extends User
      *
      * @var array
      */
-
     protected $hidden = [
         'remember_token',
     ];

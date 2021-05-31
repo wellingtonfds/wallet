@@ -7,6 +7,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -91,7 +92,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return Model
      */
     public function store(UserCreateRequest $request)
     {
@@ -112,11 +113,12 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\User $user
-     * @return User
+     * @return Model
      */
-    public function show(User $user)
+    public function show($user)
     {
-        return $user;
+        return $this->repository->show($user);
+
     }
 
     /**
@@ -143,7 +145,7 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\User $user
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return Model
      */
     public function update(UserUpdateRequest $request, User $user)
     {

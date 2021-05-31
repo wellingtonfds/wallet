@@ -19,5 +19,3 @@ use Illuminate\Support\Facades\Route;
 Route::resource('user', UserController::class);
 
 Route::post('transaction', [TransactionController::class, 'store'])->name('transaction.store');
-
-Route::get('test', [UserController::class, 'test']);
