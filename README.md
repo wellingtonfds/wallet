@@ -24,10 +24,13 @@ Here you're found all resources available [Wallet documentation](/api/documentat
 http://localhost:81/api/documentation
 ## Deploy
 #### Run
+- copy .env.example to .env
+- configure database, user and pass is "root" DB_HOST=db-wallet DB_DATABASE=wallet
 - docker-compose up --build
 - docker-compose exec -T php-wallet composer install
+- docker-compose exec -T php-wallet php artisan key:generate
 - docker-compose exec -T php-wallet php artisan migrate:refresh --seed 
-- Run docker-compose exec -T php-wallet php artisan test
+- docker-compose exec -T php-wallet php artisan test
 
 ## Server
 
