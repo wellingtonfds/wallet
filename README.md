@@ -29,7 +29,7 @@ http://localhost:81/api/documentation
 - docker-compose up --build
 - docker exec php-wallet composer install
 - docker exec php-wallet php artisan key:generate
-- docker exec php-wallet php artisan migrate:refresh --seed 
+- docker exec php-wallet php artisan migrate:refresh --seed
 - docker exec php-wallet php artisan test
 
 ## Server
