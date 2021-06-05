@@ -27,10 +27,10 @@ http://localhost:81/api/documentation
 - copy .env.example to .env
 - configure database, user and pass is "root" DB_HOST=db-wallet DB_DATABASE=wallet
 - docker-compose up --build
-- docker-compose exec -T php-wallet composer install
-- docker-compose exec -T php-wallet php artisan key:generate
-- docker-compose exec -T php-wallet php artisan migrate:refresh --seed 
-- docker-compose exec -T php-wallet php artisan test
+- docker exec php-wallet composer install
+- docker exec php-wallet php artisan key:generate
+- docker exec php-wallet php artisan migrate:refresh --seed 
+- docker exec php-wallet php artisan test
 
 ## Server
 
